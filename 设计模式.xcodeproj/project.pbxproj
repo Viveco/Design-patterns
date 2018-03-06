@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		24151BD32016E62900DADA95 /* SKUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151BD22016E62900DADA95 /* SKUViewController.m */; };
+		24151BDA20170CE900DADA95 /* CSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24151BD820170CE900DADA95 /* CSViewController.m */; };
+		24151BDB20170CE900DADA95 /* CSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24151BD920170CE900DADA95 /* CSViewController.xib */; };
+		243764C420467A6C002D8B98 /* AnimationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 243764C220467A6C002D8B98 /* AnimationVC.m */; };
+		243764C520467A6C002D8B98 /* AnimationVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 243764C320467A6C002D8B98 /* AnimationVC.xib */; };
+		244151FA20182B1A00F194FE /* SKUViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 244151F920182B1A00F194FE /* SKUViewController.xib */; };
+		24915414204D46A400A7AF87 /* SomethingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24915413204D46A400A7AF87 /* SomethingViewController.m */; };
 		249268321FD64674007E26F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 249268311FD64674007E26F7 /* main.m */; };
 		249268351FD64674007E26F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 249268341FD64674007E26F7 /* AppDelegate.m */; };
 		249268381FD64674007E26F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 249268371FD64674007E26F7 /* ViewController.m */; };
@@ -37,6 +44,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		24151BD12016E62900DADA95 /* SKUViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SKUViewController.h; sourceTree = "<group>"; };
+		24151BD22016E62900DADA95 /* SKUViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SKUViewController.m; sourceTree = "<group>"; };
+		24151BD720170CE900DADA95 /* CSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CSViewController.h; sourceTree = "<group>"; };
+		24151BD820170CE900DADA95 /* CSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSViewController.m; sourceTree = "<group>"; };
+		24151BD920170CE900DADA95 /* CSViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CSViewController.xib; sourceTree = "<group>"; };
+		243764C120467A6C002D8B98 /* AnimationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationVC.h; sourceTree = "<group>"; };
+		243764C220467A6C002D8B98 /* AnimationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationVC.m; sourceTree = "<group>"; };
+		243764C320467A6C002D8B98 /* AnimationVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnimationVC.xib; sourceTree = "<group>"; };
+		244151F920182B1A00F194FE /* SKUViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SKUViewController.xib; sourceTree = "<group>"; };
+		24915412204D46A400A7AF87 /* SomethingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomethingViewController.h; sourceTree = "<group>"; };
+		24915413204D46A400A7AF87 /* SomethingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomethingViewController.m; sourceTree = "<group>"; };
 		2492682D1FD64674007E26F7 /* 设计模式.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "设计模式.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		249268311FD64674007E26F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		249268331FD64674007E26F7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -84,6 +102,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24151BD02016E5D100DADA95 /* SKU 刷选 */ = {
+			isa = PBXGroup;
+			children = (
+				24151BD12016E62900DADA95 /* SKUViewController.h */,
+				24151BD22016E62900DADA95 /* SKUViewController.m */,
+				244151F920182B1A00F194FE /* SKUViewController.xib */,
+				24151BD720170CE900DADA95 /* CSViewController.h */,
+				24151BD820170CE900DADA95 /* CSViewController.m */,
+				24151BD920170CE900DADA95 /* CSViewController.xib */,
+			);
+			path = "SKU 刷选";
+			sourceTree = "<group>";
+		};
+		243764C020467A46002D8B98 /* 动画 */ = {
+			isa = PBXGroup;
+			children = (
+				243764C120467A6C002D8B98 /* AnimationVC.h */,
+				243764C220467A6C002D8B98 /* AnimationVC.m */,
+				243764C320467A6C002D8B98 /* AnimationVC.xib */,
+			);
+			path = "动画";
+			sourceTree = "<group>";
+		};
+		24915411204D467400A7AF87 /*  小东西 */ = {
+			isa = PBXGroup;
+			children = (
+				24915412204D46A400A7AF87 /* SomethingViewController.h */,
+				24915413204D46A400A7AF87 /* SomethingViewController.m */,
+			);
+			name = " 小东西";
+			sourceTree = "<group>";
+		};
 		249268241FD64674007E26F7 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +201,9 @@
 		249268661FD6469A007E26F7 /* 模式 */ = {
 			isa = PBXGroup;
 			children = (
+				24915411204D467400A7AF87 /*  小东西 */,
+				243764C020467A46002D8B98 /* 动画 */,
+				24151BD02016E5D100DADA95 /* SKU 刷选 */,
 				249268691FD64785007E26F7 /* 代理 */,
 				249268671FD6469A007E26F7 /* 策略模式 */,
 				249268681FD6469A007E26F7 /* 适配模式 */,
@@ -291,6 +344,9 @@
 			files = (
 				249268431FD64674007E26F7 /* LaunchScreen.storyboard in Resources */,
 				249268401FD64674007E26F7 /* Assets.xcassets in Resources */,
+				244151FA20182B1A00F194FE /* SKUViewController.xib in Resources */,
+				243764C520467A6C002D8B98 /* AnimationVC.xib in Resources */,
+				24151BDB20170CE900DADA95 /* CSViewController.xib in Resources */,
 				2492683B1FD64674007E26F7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -317,9 +373,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				249268381FD64674007E26F7 /* ViewController.m in Sources */,
+				243764C420467A6C002D8B98 /* AnimationVC.m in Sources */,
 				2492683E1FD64674007E26F7 /* ____.xcdatamodeld in Sources */,
 				249268351FD64674007E26F7 /* AppDelegate.m in Sources */,
+				24151BDA20170CE900DADA95 /* CSViewController.m in Sources */,
 				2492686D1FD6484E007E26F7 /* AVPlayer.m in Sources */,
+				24915414204D46A400A7AF87 /* SomethingViewController.m in Sources */,
+				24151BD32016E62900DADA95 /* SKUViewController.m in Sources */,
 				249268321FD64674007E26F7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
