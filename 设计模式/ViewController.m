@@ -12,7 +12,7 @@
 #import "AnimationVC.h"
 #import "SomethingViewController.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,SomethingVCDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableVIew;
 
@@ -35,9 +35,8 @@
     _classStringVC = @[[CSViewController new],[SKUViewController new],[AnimationVC new],[SomethingViewController new]];
     
     [self.tableVIew registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TabelViewCell"];
-    [self.tableVIew setEditing:YES animated:YES];  // 编辑模式
-    self.tableVIew.allowsMultipleSelectionDuringEditing = YES;
-    
+//    [self.tableVIew setEditing:YES animated:YES];  // 编辑模式
+//    self.tableVIew.allowsMultipleSelectionDuringEditing = YES;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -57,10 +56,14 @@
     
     
     [self.navigationController pushViewController:self.classStringVC[indexPath.row] animated:YES];
+//    [self presentViewController:self.classStringVC[indexPath.row] animated:YES completion:nil];
+
+//    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
+//    [self.navigationController pushViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
     
 }
 
-// 左滑删除
+// 删除的一些方法
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"编辑模式");
 }

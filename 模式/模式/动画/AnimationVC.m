@@ -54,6 +54,7 @@
     NSLog(@"%s", __FUNCTION__);
     
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
@@ -65,6 +66,7 @@
     self.button = [UIButton buttonWithType:UIButtonTypeContactAdd];
     self.button.contentEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0 );
     self.button.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    [self.button addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
 
     self.animationImageView.animationImages = @[];
     self.animationImageView.animationDuration = 10;
@@ -144,6 +146,9 @@
 }
 
 
+- (void)back{
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 #pragma mark -- ScrollView 的delegate
 

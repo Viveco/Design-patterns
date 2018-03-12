@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import <UserNotifications/UNNotificationSettings.h>
+
 
 @interface AppDelegate ()
 
@@ -18,6 +20,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+   
+    
+    if ( [[UIDevice currentDevice] systemVersion].floatValue >8.0) {
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
+        // 进行注册
+        [application registerUserNotificationSettings:settings];
+    }
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 20;
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     return YES;
 }
