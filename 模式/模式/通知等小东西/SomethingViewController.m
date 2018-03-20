@@ -11,6 +11,8 @@
 
 @interface SomethingViewController ()
 
+@property (strong, nonatomic) BlockModel *model;
+
 @end
 
 @implementation SomethingViewController
@@ -28,7 +30,9 @@
 //    [self somethingTime];
 //    [self somethingSave];
 //    [self somethingTouch];
-    [self somethingQuartz2D];
+//    [self somethingQuartz2D];
+//    [self somethingCALayer];
+    [self somethingBlock];
     
 }
 #pragma mark  关于进制
@@ -97,9 +101,7 @@
     NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"YYYY-MM-dd"];
     NSLog(@"%@",[formatter stringFromDate:date]);
-    
 }
-
 #pragma mark -- 数据归档问题
 - (void)somethingSave{
     
@@ -136,6 +138,10 @@
     NSLog(@"%@",person.name);
     
     [self twoObjectSaveArchiverWithPath:[documentPaths firstObject]];
+    
+    
+    [person setValuesForKeysWithDictionary:[NSDictionary new]]; // dic 转model
+    
 }
 - (void)twoObjectSaveArchiverWithPath:(NSString * )path{
     
@@ -178,11 +184,41 @@
     [self.view addSubview:quartyzView];
 }
 
+#pragma mark -- Calayer
+- (void)somethingCALayer{
+    
+    CAlayerView * calayerView = [[CAlayerView alloc] initWithFrame:CGRectMake(0, 100, 375, 667)];
+    [self.view addSubview:calayerView];
+    
+}
+
+#pragma mark --  测试block
+- (void)somethingBlock{
+    
+    [BlockModel testBlockWithSelf:^(id responder) {
+        NSLog(@"%@",responder);
+    }];
+    
+    [BlockModel testPropertyWith:^(id responder) {
+        self.view.backgroundColor = [UIColor redColor];
+        NSLog(@"%@",responder);
+    }];
+    
+    
+    WEAK_SELF
+    self.model = [[BlockModel alloc] init];
+   __block BOOL falg = YES;
+    self.model.MyBlock = ^(id responder) {
+        wself.view.backgroundColor = [UIColor redColor];
+        falg = NO;
+    };
+}
 @end
 
 
-@implementation ValueForKey
 
+
+@implementation ValueForKey
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
     
@@ -219,6 +255,21 @@
 - (instancetype)init{
     if (self = [super init]) {
     }return self;
+}
+
+@end
+
+
+
+//对于block 来说如果没有对象进行持有的情况下，（类似不是 self.model来调用），那么block 内部是可以使用self，这样self并没有对这个对象进行持有。+ 号方法调用也是没有进行持有，所以可以进行调用，之后或许会出现 +号方法循环调用在理解说明，直接释放block= nil 就可以。
+@implementation BlockModel
+
++ (void)testPropertyWith:(Block)block{
+    block(@"属性测试");
+}
+
++ (void)testBlockWithSelf:(void (^)(id))block{
+    block(@"直接参数测试");
 }
 
 @end

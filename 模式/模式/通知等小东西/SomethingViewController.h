@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "TouchTestView.h"
 #import "Quartz2DView.h"
+#import "CAlayerView.h"
 
 
 @class ValueForKey;
+@class BlockModel;
 @protocol SomethingVCDelegate <NSObject>
 
 @required
@@ -37,3 +39,17 @@
 @property (copy, nonatomic) NSString *grade;
 
 @end
+
+
+typedef void(^Block)(id responder);
+
+@interface BlockModel : NSObject
+
+@property (copy, nonatomic) void(^MyBlock)(id responder);
+
++ (void)testBlockWithSelf:(void(^)(id responder))block;
+
++ (void)testPropertyWith:(Block)block;
+
+@end
+

@@ -8,13 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@class DicModel;
+@class BlockModel;
+
 @interface AnimationVC : UIViewController
 
 @end
 
-@interface DicModel : NSObject
-
-@end
 
 

@@ -31,11 +31,14 @@
 //    CGContextClip(ctx);
 //
     
+    CGContextSetLineJoin(ctx, kCGLineJoinRound);
+    CGContextSetLineCap(ctx, kCGLineCapRound);
     CGContextMoveToPoint(ctx, 10, 10);
-    CGContextAddLineToPoint(ctx, 100, 100);
-    CGContextAddLineToPoint(ctx, 10, 100);
+    CGContextAddLineToPoint(ctx, 150, 150);
+    CGContextAddLineToPoint(ctx, 10, 150);
     CGContextAddLineToPoint(ctx, 10, 10);
     CGContextSetLineWidth(ctx, 5);
+
     CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
     CGContextSetFillColorWithColor(ctx, [UIColor orangeColor].CGColor);
     CGContextStrokePath(ctx);
@@ -43,7 +46,7 @@
 
     // 两个控制点
     CGContextMoveToPoint(ctx, 100, 100);
-    CGContextAddCurveToPoint(ctx, 300,250, 300, 50, 100, 100);
+    CGContextAddCurveToPoint(ctx, 300,250, 300, 50, 150, 150);
     CGContextStrokePath(ctx);
 
     //一个控制点
@@ -73,13 +76,35 @@
     CGContextAddEllipseInRect(ctx, CGRectMake(10, 200, 100, 120));
     CGContextDrawPath(ctx, kCGPathStroke);
     
+    UIBezierPath * path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(30, 300, 100, 100) cornerRadius:50];
+    CGContextAddPath(ctx, path.CGPath);
+    CGContextStrokePath(ctx);
+
+    
     [self watermark];
+    [self drawString];
 }
 
 - (void)watermark{
-
+    UIGraphicsBeginImageContextWithOptions(CGSizeMake(200, 200), YES, 0);
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     CGContextDrawImage(ctx, CGRectMake(125, 225, 150,150), [UIImage imageNamed:@"11.png"].CGImage);
+    
+//    UIImage * image = UIGraphicsGetImageFromCurrentImageContext();
+//    image drawInRect:<#(CGRect)#> blendMode:<#(CGBlendMode)#> alpha:<#(CGFloat)#>
+    
+    [self.layer renderInContext:ctx]; // 截屏 把 layer 绘制到ctx 中，通过 ctx 取出图片
+}
+- (void)drawString{
+    NSString * string = @"就是简单的绘制测试";
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[NSFontAttributeName] = [UIFont systemFontOfSize:14];
+    dict[NSForegroundColorAttributeName] = [UIColor redColor];
+//    dict[NSStrokeColorAttributeName] = [UIColor redColor];
+//    dict[NSStrokeWidthAttributeName] = @3;
+    [string drawInRect:CGRectMake(330, 330, 45, 60) withAttributes:dict];
+    
+
 }
 
 @end

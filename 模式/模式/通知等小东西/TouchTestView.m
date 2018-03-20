@@ -9,6 +9,7 @@
 #import "TouchTestView.h"
 
 
+
 @implementation TouchTestView
 
 - (instancetype)initWithFrame:(CGRect)frame{
@@ -19,6 +20,7 @@
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
     
     NSSet * alltouches = [event allTouches];
     UITouch * touche = [alltouches anyObject];

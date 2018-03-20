@@ -11,8 +11,10 @@
 #import "CSViewController.h"
 #import "AnimationVC.h"
 #import "SomethingViewController.h"
+#import "LifeCycleViewController.h"
+#import "NGRViewController.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource,SomethingVCDelegate>
+@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableVIew;
 
@@ -31,12 +33,26 @@
     NSLog(@"一共有21中设计模式，逐步写出感想和心得");
     NSLog(@"测试") ;
     
-    _dataSource = @[@"设计模式",@"SKU 刷选",@"UIImageView的帧动画",@"一些东西，什么通知，数据持久化等"];
-    _classStringVC = @[[CSViewController new],[SKUViewController new],[AnimationVC new],[SomethingViewController new]];
+    _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD-runLoop等"];
+    _classStringVC = @[[CSViewController new],
+                       [SKUViewController new],
+                       [AnimationVC new],
+                       [SomethingViewController new],
+                       [LifeCycleViewController new],
+                       [NGRViewController new]];
     
     [self.tableVIew registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TabelViewCell"];
+
+    
+    self.tableVIew.alwaysBounceVertical = YES; // 是否有横向纵向 反弹效果
+    self.tableVIew.alwaysBounceHorizontal = YES;
+    
 //    [self.tableVIew setEditing:YES animated:YES];  // 编辑模式
-//    self.tableVIew.allowsMultipleSelectionDuringEditing = YES;
+//    self.tableVIew.allowsMultipleSelectionDuringEditing = YES;// 同意选择多行
+//    // 删除就那么几行，起码不用重新刷新啊
+//    [self.tablieView deleteRowsAtIndexPaths:[NSArray new] withRowAnimation:UITableViewRowAnimationMiddle];
+    
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -55,12 +71,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
-    [self.navigationController pushViewController:self.classStringVC[indexPath.row] animated:YES];
-//    [self presentViewController:self.classStringVC[indexPath.row] animated:YES completion:nil];
-
-//    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
-//    [self.navigationController pushViewController:[self.navigationController.viewControllers objectAtIndex:2] animated:YES];
-    
+    [self.navigationController pushViewController:self.classStringVC[indexPath.row] animated:YES];    
 }
 
 // 删除的一些方法
@@ -85,11 +96,5 @@
     return @[action0,action1];
 
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 
 @end
