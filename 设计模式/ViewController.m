@@ -29,10 +29,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    
-    NSLog(@"一共有21中设计模式，逐步写出感想和心得");
-    NSLog(@"测试") ;
-    
     _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD-runLoop等"];
     _classStringVC = @[[CSViewController new],
                        [SKUViewController new],

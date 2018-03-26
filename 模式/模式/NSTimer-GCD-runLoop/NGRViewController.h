@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class JPOperation;
 @interface NGRViewController : UIViewController
+
+@end
+
+
+@interface JPOperation : NSOperation
 
 @end

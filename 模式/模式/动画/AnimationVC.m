@@ -23,7 +23,7 @@
     
     [super viewDidLoad];
     [self.view addSubview:self.animationBT];
-    
+
     [self waveViewAnimation];
 //    [self CABasicAnimation];
 //    [self CAkeyframeAnimation];

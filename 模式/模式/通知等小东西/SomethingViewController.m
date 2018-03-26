@@ -31,8 +31,8 @@
 //    [self somethingSave];
 //    [self somethingTouch];
 //    [self somethingQuartz2D];
-//    [self somethingCALayer];
-    [self somethingBlock];
+    [self somethingCALayer];
+//    [self somethingBlock];
     
 }
 #pragma mark  关于进制
