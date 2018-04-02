@@ -13,6 +13,8 @@
 #import "SomethingViewController.h"
 #import "LifeCycleViewController.h"
 #import "NGRViewController.h"
+#import "NetViewController.h"
+#import "RunLTViewController.h"
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -21,6 +23,7 @@
 @property (strong, nonatomic) NSArray *dataSource;
 
 @property (strong, nonatomic) NSArray *classStringVC;
+
 @end
 
 @implementation ViewController
@@ -29,13 +32,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD-runLoop等"];
+    _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD等",@"RunLoop-RunTime",@"网络请求等"];
+    
+    
     _classStringVC = @[[CSViewController new],
                        [SKUViewController new],
                        [AnimationVC new],
                        [SomethingViewController new],
                        [LifeCycleViewController new],
-                       [NGRViewController new]];
+                       [NGRViewController new],
+                       [RunLTViewController new],
+                       [[NetViewController alloc] initWithNibName:@"NetViewController" bundle:[NSBundle mainBundle]]];
     
     [self.tableVIew registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TabelViewCell"];
 
@@ -47,7 +54,6 @@
 //    self.tableVIew.allowsMultipleSelectionDuringEditing = YES;// 同意选择多行
 //    // 删除就那么几行，起码不用重新刷新啊
 //    [self.tablieView deleteRowsAtIndexPaths:[NSArray new] withRowAnimation:UITableViewRowAnimationMiddle];
-    
     
 }
 
@@ -66,8 +72,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    [self.navigationController pushViewController:self.classStringVC[indexPath.row] animated:YES];    
+    UIViewController * view =self.classStringVC[indexPath.row];
+    view.title = _dataSource[indexPath.row];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 // 删除的一些方法

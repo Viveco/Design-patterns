@@ -207,7 +207,7 @@
     
     WEAK_SELF
     self.model = [[BlockModel alloc] init];
-   __block BOOL falg = YES;
+    __block BOOL falg = YES;
     self.model.MyBlock = ^(id responder) {
         wself.view.backgroundColor = [UIColor redColor];
         falg = NO;
@@ -221,7 +221,7 @@
 @implementation ValueForKey
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
-    
+//    encodeRuntime(ValueForKey) // 宏封装
     unsigned int count = 0;
     Ivar * ivars = class_copyIvarList([ValueForKey class], &count);
     for (int i = 0; i < count; i ++) {
@@ -237,6 +237,7 @@
 }
 
 - (instancetype)initWithCoder:(NSCoder * )aDecoder{
+//    initCoderRuntime(ValueForKey)// 宏封装
     if (self = [super init]) {
         
         unsigned int count = 0;

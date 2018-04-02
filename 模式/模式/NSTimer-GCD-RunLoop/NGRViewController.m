@@ -277,6 +277,7 @@
         UIImage *image = [UIImage imageWithData:data];
         image1 = image;
     }];
+    op1.name = @"图片1";
     
     // 2.开启一个线程下载第二长图片
     NSOperation *op2 = [NSBlockOperation blockOperationWithBlock:^{

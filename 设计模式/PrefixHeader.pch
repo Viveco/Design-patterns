@@ -18,6 +18,7 @@
 #define G_P(x,y) CGPointMake(x, y);
 
 #define WEAK_SELF   __weak typeof(self) wself = self;
+#define STRONG_SELF __strong typof(wself) strongSelf = weaklf;
 
 #define NSLog(FORMAT, ...) fprintf(stderr,"%s:%d\t%s\n",[[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
 
@@ -26,6 +27,39 @@
 #define NSLog(FORMAT, ...) nil
 
 #endif
+
+#import <objc/runtime.h>
+
+#define encodeRuntime(A) \
+\
+unsigned int count = 0;\
+Ivar *ivars = class_copyIvarList([A class], &count);\
+for (int i = 0; i<count; i++) {\
+Ivar ivar = ivars[i];\
+const char *name = ivar_getName(ivar);\
+NSString *key = [NSString stringWithUTF8String:name];\
+id value = [self valueForKey:key];\
+[encoder encodeObject:value forKey:key];\
+}\
+free(ivars);\
+\
+
+#define initCoderRuntime(A) \
+\
+if (self = [super init]) {\
+unsigned int count = 0;\
+Ivar *ivars = class_copyIvarList([A class], &count);\
+for (int i = 0; i<count; i++) {\
+Ivar ivar = ivars[i];\
+const char *name = ivar_getName(ivar);\
+NSString *key = [NSString stringWithUTF8String:name];\
+id value = [decoder decodeObjectForKey:key];\
+[self setValue:value forKey:key];\
+}\
+free(ivars);\
+}\
+return self;\
+\
 
 
 /* PrefixHeader_pch */

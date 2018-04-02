@@ -53,7 +53,7 @@
     
     CAShapeLayer * shaper = [CAShapeLayer layer];
     shaper.frame = CGRectMake(100, 250, 200, 200);
-//    shaper.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 200, 200)].CGPath;
+    shaper.path = [UIBezierPath bezierPathWithOvalInRect:CGRectMake(0, 0, 200, 200)].CGPath;
     shaper.position = G_P(100,100);
     shaper.fillColor = [UIColor blueColor].CGColor;
     shaper.lineWidth = 10;
@@ -76,6 +76,8 @@
     [path addLineToPoint:CGPointMake(125, 125)];
     
     _shaperLayer.path = path.CGPath;
+    
+   
 }
 //// 什么时候调用
 //- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx{

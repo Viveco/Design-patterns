@@ -110,6 +110,11 @@
 		247D85D32061097B00EE6145 /* 98.png in Resources */ = {isa = PBXBuildFile; fileRef = 247D856F2061097B00EE6145 /* 98.png */; };
 		247D85D42061097B00EE6145 /* 99.png in Resources */ = {isa = PBXBuildFile; fileRef = 247D85702061097B00EE6145 /* 99.png */; };
 		247D85D820610DFA00EE6145 /* NGRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247D85D720610DFA00EE6145 /* NGRViewController.m */; };
+		247E7C32206B42E100CF40BF /* NetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 247E7C31206B42E100CF40BF /* NetViewController.m */; };
+		247E7C35206CC2B400CF40BF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 247E7C34206CC2B400CF40BF /* Reachability.m */; };
+		247E7C39206DD0B700CF40BF /* NSObject+SimpleKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 247E7C37206DD0B700CF40BF /* NSObject+SimpleKVO.m */; };
+		247E7C3B206E084A00CF40BF /* NetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247E7C3A206E084A00CF40BF /* NetViewController.xib */; };
+		24845BC02068CA5400BC076A /* RunLTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24845BBF2068CA5400BC076A /* RunLTViewController.m */; };
 		2485B27A204E2D4E00292942 /* CSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2485B270204E2D4E00292942 /* CSViewController.m */; };
 		2485B27B204E2D4E00292942 /* CSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2485B271204E2D4E00292942 /* CSViewController.xib */; };
 		2485B27C204E2D4E00292942 /* SKUViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2485B273204E2D4E00292942 /* SKUViewController.m */; };
@@ -257,6 +262,15 @@
 		247D85702061097B00EE6145 /* 99.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 99.png; sourceTree = "<group>"; };
 		247D85D620610DFA00EE6145 /* NGRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGRViewController.h; sourceTree = "<group>"; };
 		247D85D720610DFA00EE6145 /* NGRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGRViewController.m; sourceTree = "<group>"; };
+		247E7C30206B42E100CF40BF /* NetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetViewController.h; sourceTree = "<group>"; };
+		247E7C31206B42E100CF40BF /* NetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetViewController.m; sourceTree = "<group>"; };
+		247E7C33206CC2B300CF40BF /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		247E7C34206CC2B400CF40BF /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		247E7C37206DD0B700CF40BF /* NSObject+SimpleKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SimpleKVO.m"; sourceTree = "<group>"; };
+		247E7C38206DD0B700CF40BF /* NSObject+SimpleKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SimpleKVO.h"; sourceTree = "<group>"; };
+		247E7C3A206E084A00CF40BF /* NetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetViewController.xib; sourceTree = "<group>"; };
+		24845BBE2068CA5400BC076A /* RunLTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLTViewController.h; sourceTree = "<group>"; };
+		24845BBF2068CA5400BC076A /* RunLTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLTViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		2485B26F204E2D4E00292942 /* CSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSViewController.h; sourceTree = "<group>"; };
 		2485B270204E2D4E00292942 /* CSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSViewController.m; sourceTree = "<group>"; };
 		2485B271204E2D4E00292942 /* CSViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CSViewController.xib; sourceTree = "<group>"; };
@@ -435,14 +449,39 @@
 			path = gif;
 			sourceTree = "<group>";
 		};
-		247D85D520610DD500EE6145 /* NSTimer-GCD-runLoop */ = {
+		247D85D520610DD500EE6145 /* NSTimer-GCD-RunLoop */ = {
 			isa = PBXGroup;
 			children = (
 				247D85D620610DFA00EE6145 /* NGRViewController.h */,
 				247D85D720610DFA00EE6145 /* NGRViewController.m */,
+				24845BBE2068CA5400BC076A /* RunLTViewController.h */,
+				24845BBF2068CA5400BC076A /* RunLTViewController.m */,
 			);
-			name = "NSTimer-GCD-runLoop";
-			path = "模式/NSTimer-GCD-runLoop";
+			name = "NSTimer-GCD-RunLoop";
+			path = "模式/NSTimer-GCD-RunLoop";
+			sourceTree = "<group>";
+		};
+		247E7C2F206B41AC00CF40BF /* 网络请求等 */ = {
+			isa = PBXGroup;
+			children = (
+				247E7C30206B42E100CF40BF /* NetViewController.h */,
+				247E7C31206B42E100CF40BF /* NetViewController.m */,
+				247E7C3A206E084A00CF40BF /* NetViewController.xib */,
+				247E7C33206CC2B300CF40BF /* Reachability.h */,
+				247E7C34206CC2B400CF40BF /* Reachability.m */,
+			);
+			name = "网络请求等";
+			path = "模式/网络请求等";
+			sourceTree = "<group>";
+		};
+		247E7C36206DD0AA00CF40BF /* 扩展类 */ = {
+			isa = PBXGroup;
+			children = (
+				247E7C38206DD0B700CF40BF /* NSObject+SimpleKVO.h */,
+				247E7C37206DD0B700CF40BF /* NSObject+SimpleKVO.m */,
+			);
+			name = "扩展类";
+			path = "模式/扩展类";
 			sourceTree = "<group>";
 		};
 		2485B26E204E2D4E00292942 /* SKU 刷选 */ = {
@@ -596,7 +635,9 @@
 		249268661FD6469A007E26F7 /* 模式 */ = {
 			isa = PBXGroup;
 			children = (
-				247D85D520610DD500EE6145 /* NSTimer-GCD-runLoop */,
+				247E7C36206DD0AA00CF40BF /* 扩展类 */,
+				247E7C2F206B41AC00CF40BF /* 网络请求等 */,
+				247D85D520610DD500EE6145 /* NSTimer-GCD-RunLoop */,
 				24AC0C60205B756F0076C34D /* 单例模式 */,
 				2489C04C205909A200B78AAD /* 生命周期 */,
 				2485B28B204E76D100292942 /* 策略模式 */,
@@ -752,6 +793,7 @@
 				247D85B62061097B00EE6145 /* 71.png in Resources */,
 				249268431FD64674007E26F7 /* LaunchScreen.storyboard in Resources */,
 				247D859F2061097B00EE6145 /* 50.png in Resources */,
+				247E7C3B206E084A00CF40BF /* NetViewController.xib in Resources */,
 				247D85922061097B00EE6145 /* 39.png in Resources */,
 				247D857B2061097B00EE6145 /* 18.png in Resources */,
 				247D85AB2061097B00EE6145 /* 61.png in Resources */,
@@ -861,17 +903,21 @@
 			files = (
 				2485B27C204E2D4E00292942 /* SKUViewController.m in Sources */,
 				249268381FD64674007E26F7 /* ViewController.m in Sources */,
+				24845BC02068CA5400BC076A /* RunLTViewController.m in Sources */,
 				2485B288204E66A700292942 /* AnimationVC.m in Sources */,
 				2492683E1FD64674007E26F7 /* ____.xcdatamodeld in Sources */,
 				247D85D820610DFA00EE6145 /* NGRViewController.m in Sources */,
 				249268351FD64674007E26F7 /* AppDelegate.m in Sources */,
 				2485B27A204E2D4E00292942 /* CSViewController.m in Sources */,
+				247E7C39206DD0B700CF40BF /* NSObject+SimpleKVO.m in Sources */,
 				2485B27E204E2D4E00292942 /* SomethingViewController.m in Sources */,
 				2491575120525F0A00C198C4 /* Quartz2DView.m in Sources */,
+				247E7C35206CC2B400CF40BF /* Reachability.m in Sources */,
 				2489C04F205909B600B78AAD /* LifeCycleViewController.m in Sources */,
 				2489C05220591B1A00B78AAD /* YSWaterWaveView.m in Sources */,
 				249264392057B65000B725F5 /* CAlayerView.m in Sources */,
 				2485B283204E2D6400292942 /* AVPlayer.m in Sources */,
+				247E7C32206B42E100CF40BF /* NetViewController.m in Sources */,
 				24AC0C66205BA7CD0076C34D /* SingleModel.m in Sources */,
 				2491574E205238D500C198C4 /* TouchTestView.m in Sources */,
 				249268321FD64674007E26F7 /* main.m in Sources */,
