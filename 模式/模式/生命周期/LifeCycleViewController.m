@@ -8,7 +8,7 @@
 
 #import "LifeCycleViewController.h"
 
-@interface LifeCycleViewController ()
+@interface LifeCycleViewController ()<UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) UIImageView *imgv;

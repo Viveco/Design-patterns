@@ -11,7 +11,7 @@
 #import "Reachability.h"
 
 
-@interface NetViewController ()<NSXMLParserDelegate,NSURLSessionDownloadDelegate>
+@interface NetViewController ()<NSXMLParserDelegate,NSURLSessionDownloadDelegate,NSURLSessionDataDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *downImageView;
 
@@ -24,6 +24,15 @@
 @property (strong, nonatomic) NSData *resumeData;
 
 @property (strong, nonatomic) NSURLSessionDownloadTask *task;
+
+@property (strong, nonatomic) NSURLSessionDataTask *dataTask;
+
+/** 文件的总长度 */
+@property (assign, nonatomic) NSInteger totalLength;
+/** 已经下载的文件长度 */
+@property (assign, nonatomic) NSInteger curLength;
+/** 输出流 */
+@property (strong, nonatomic) NSOutputStream *outStream;
 
 
 @end
@@ -112,10 +121,33 @@
 }
 
 #pragma mark -- 断点下载
-
 - (void)seomthingNSURLSession{
     
-    self.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionConfiguration * config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    config.timeoutIntervalForRequest = 10;
+    config.allowsCellularAccess = NO;
+    NSString *userPasswordString = [NSString stringWithFormat:@"%@:%@", @"LXM", @"123"];
+    NSData * userPasswordData = [userPasswordString dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *base64EncodedCredential = [userPasswordData base64EncodedStringWithOptions:0];
+    NSString *authString = [NSString stringWithFormat:@"Basic: %@", base64EncodedCredential];
+    config.HTTPAdditionalHeaders = @{@"Accept":@"application/json",
+                                     @"Language":@"en",
+                                     @"Authorization" : authString,
+                                      @"User-Agent": @"iPhone AppleWebKi"
+                                     };
+    
+    self.session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSString * urlString = @"http://www.deskcar.com/desktop/fengjing/20125700336/1.jpg";
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    NSURL * url  = [NSURL URLWithString:urlString];
+    NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
+    
+    self.task = [self.session downloadTaskWithRequest:request];
+    
+    NSString *rangeStr = [NSString stringWithFormat:@"bytes=%zd-", self.curLength]; // 拿到之前下载的多少
+    [request setValue:rangeStr forHTTPHeaderField:@"Range"];
+    self.dataTask = [self.session dataTaskWithRequest:request];
 }
 
 - (IBAction)onceDown:(UIButton *)sender {
@@ -131,12 +163,10 @@
             });
         }
     });
-}
-
-- (IBAction)starDown:(UIButton *)sender {
     
-    NSURL * urlString  = [NSURL URLWithString:@"http://www.deskcar.com/desktop/fengjing/20125700336/20.jpg"];
-    self.task = [self.session downloadTaskWithURL:urlString];
+}
+ // NSURLSessionDownloadTask
+- (IBAction)starDown:(UIButton *)sender {
     [self.task resume];
 }
 - (IBAction)pauseDown:(UIButton *)sender {
@@ -152,15 +182,21 @@
     self.resumeData = nil;
 }
 
-
+ // NSURLSessionDataTask
 - (IBAction)starUp:(id)sender {
+    [_dataTask resume];
 }
 - (IBAction)pauseUp:(id)sender {
+    [_dataTask suspend];
 }
+
 - (IBAction)recoverUp:(id)sender {
+    [_dataTask resume];
 }
 
 
+
+#pragma mark -- NSURLSessionDownLoadDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     
     if (session == self.session) {
@@ -180,9 +216,42 @@
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error{
     
     self.downImageView.image = [UIImage imageWithContentsOfFile:self.filePaths];
+    if (self.outStream != nil) {
+        [self.outStream close];
+        self.outStream = nil;
+    }
 }
 
 
+#pragma mark-- NSURLSessionDataDelegate
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler {
+    
+    // 允许接受数据，如果没有写这句，则后面代理的方法不会被执行
+
+    completionHandler(NSURLSessionResponseAllow);
+    self.totalLength = response.expectedContentLength;
+    NSString * filePahts = [self cacheDir:response.suggestedFilename];
+    self.filePaths = filePahts;
+    self.outStream = [[NSOutputStream alloc] initToFileAtPath:self.filePaths append:YES];
+    [self.outStream open];
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
+    
+    self.curLength += data.length;
+    [self.outStream write:data.bytes maxLength:data.length];
+    NSLog(@"%f",1.0* self.curLength/self.totalLength);
+   
+}
+// 当请求是 https 的时候 会自动调用这个地方
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential * _Nullable))completionHandler{
+    NSLog(@"调用外层");
+    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+         NSLog(@"调用了里面这一层是服务器信任的证书");
+        NSURLCredential *card = [[NSURLCredential alloc]initWithTrust:challenge.protectionSpace.serverTrust];
+        completionHandler(NSURLSessionAuthChallengeUseCredential , card);
+    }
+}
 
 #pragma mark --- 输入一个字符串,则在沙盒中生成路径
 // 传入字符串,直接在沙盒Cache中生成路径
@@ -194,6 +263,11 @@
 }
 
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    [self.session invalidateAndCancel];
+    
+}
 - (void)dealloc{
 
     [self.reachability stopNotifier];
@@ -207,9 +281,6 @@
 
 
 @implementation ItemInfo
-
-
-
 - (void)testSelector{
 
     BOOL b1 = [self respondsToSelector:@selector(selector)];

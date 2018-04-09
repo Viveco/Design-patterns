@@ -114,6 +114,8 @@
 		247E7C35206CC2B400CF40BF /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 247E7C34206CC2B400CF40BF /* Reachability.m */; };
 		247E7C39206DD0B700CF40BF /* NSObject+SimpleKVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 247E7C37206DD0B700CF40BF /* NSObject+SimpleKVO.m */; };
 		247E7C3B206E084A00CF40BF /* NetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247E7C3A206E084A00CF40BF /* NetViewController.xib */; };
+		2484320420720E4100E81354 /* NSURLSessionDataTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2484320320720E4100E81354 /* NSURLSessionDataTaskViewController.m */; };
+		2484320620720E7900E81354 /* NSURLSessionDataTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2484320520720E7900E81354 /* NSURLSessionDataTaskViewController.xib */; };
 		24845BC02068CA5400BC076A /* RunLTViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24845BBF2068CA5400BC076A /* RunLTViewController.m */; };
 		2485B27A204E2D4E00292942 /* CSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2485B270204E2D4E00292942 /* CSViewController.m */; };
 		2485B27B204E2D4E00292942 /* CSViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2485B271204E2D4E00292942 /* CSViewController.xib */; };
@@ -137,7 +139,13 @@
 		249268431FD64674007E26F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 249268411FD64674007E26F7 /* LaunchScreen.storyboard */; };
 		2492684E1FD64675007E26F7 /* ____Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2492684D1FD64675007E26F7 /* ____Tests.m */; };
 		249268591FD64675007E26F7 /* ____UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 249268581FD64675007E26F7 /* ____UITests.m */; };
+		24A74926207357B6009C451A /* EncryptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A74924207357B6009C451A /* EncryptionViewController.m */; };
+		24A74927207357B6009C451A /* EncryptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24A74925207357B6009C451A /* EncryptionViewController.xib */; };
 		24AC0C66205BA7CD0076C34D /* SingleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 24AC0C65205BA7CD0076C34D /* SingleModel.m */; };
+		24C5AE5E207B0DF20037A069 /* NSData+CommonCrypto.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE57207B0DF10037A069 /* NSData+CommonCrypto.m */; };
+		24C5AE5F207B0DF20037A069 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE5A207B0DF10037A069 /* NSString+Base64.m */; };
+		24C5AE60207B0DF20037A069 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE5C207B0DF20037A069 /* AES.m */; };
+		24C5AE61207B0DF20037A069 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE5D207B0DF20037A069 /* NSData+Base64.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -269,6 +277,9 @@
 		247E7C37206DD0B700CF40BF /* NSObject+SimpleKVO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SimpleKVO.m"; sourceTree = "<group>"; };
 		247E7C38206DD0B700CF40BF /* NSObject+SimpleKVO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SimpleKVO.h"; sourceTree = "<group>"; };
 		247E7C3A206E084A00CF40BF /* NetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NetViewController.xib; sourceTree = "<group>"; };
+		2484320220720E4100E81354 /* NSURLSessionDataTaskViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSURLSessionDataTaskViewController.h; sourceTree = "<group>"; };
+		2484320320720E4100E81354 /* NSURLSessionDataTaskViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSURLSessionDataTaskViewController.m; sourceTree = "<group>"; };
+		2484320520720E7900E81354 /* NSURLSessionDataTaskViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NSURLSessionDataTaskViewController.xib; sourceTree = "<group>"; };
 		24845BBE2068CA5400BC076A /* RunLTViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RunLTViewController.h; sourceTree = "<group>"; };
 		24845BBF2068CA5400BC076A /* RunLTViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RunLTViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
 		2485B26F204E2D4E00292942 /* CSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSViewController.h; sourceTree = "<group>"; };
@@ -313,8 +324,19 @@
 		249268541FD64675007E26F7 /* 设计模式UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "设计模式UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		249268581FD64675007E26F7 /* ____UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "____UITests.m"; sourceTree = "<group>"; };
 		2492685A1FD64675007E26F7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24A74923207357B6009C451A /* EncryptionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EncryptionViewController.h; sourceTree = "<group>"; };
+		24A74924207357B6009C451A /* EncryptionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EncryptionViewController.m; sourceTree = "<group>"; wrapsLines = 0; };
+		24A74925207357B6009C451A /* EncryptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EncryptionViewController.xib; sourceTree = "<group>"; };
 		24AC0C64205BA7CD0076C34D /* SingleModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SingleModel.h; sourceTree = "<group>"; };
 		24AC0C65205BA7CD0076C34D /* SingleModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SingleModel.m; sourceTree = "<group>"; };
+		24C5AE56207B0DF10037A069 /* NSData+CommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+CommonCrypto.h"; sourceTree = "<group>"; };
+		24C5AE57207B0DF10037A069 /* NSData+CommonCrypto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+CommonCrypto.m"; sourceTree = "<group>"; };
+		24C5AE58207B0DF10037A069 /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		24C5AE59207B0DF10037A069 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		24C5AE5A207B0DF10037A069 /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		24C5AE5B207B0DF20037A069 /* AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
+		24C5AE5C207B0DF20037A069 /* AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
+		24C5AE5D207B0DF20037A069 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -464,6 +486,9 @@
 		247E7C2F206B41AC00CF40BF /* 网络请求等 */ = {
 			isa = PBXGroup;
 			children = (
+				2484320220720E4100E81354 /* NSURLSessionDataTaskViewController.h */,
+				2484320320720E4100E81354 /* NSURLSessionDataTaskViewController.m */,
+				2484320520720E7900E81354 /* NSURLSessionDataTaskViewController.xib */,
 				247E7C30206B42E100CF40BF /* NetViewController.h */,
 				247E7C31206B42E100CF40BF /* NetViewController.m */,
 				247E7C3A206E084A00CF40BF /* NetViewController.xib */,
@@ -635,6 +660,7 @@
 		249268661FD6469A007E26F7 /* 模式 */ = {
 			isa = PBXGroup;
 			children = (
+				24A7492220732510009C451A /* 加密 */,
 				247E7C36206DD0AA00CF40BF /* 扩展类 */,
 				247E7C2F206B41AC00CF40BF /* 网络请求等 */,
 				247D85D520610DD500EE6145 /* NSTimer-GCD-RunLoop */,
@@ -651,6 +677,18 @@
 			path = "../模式";
 			sourceTree = "<group>";
 		};
+		24A7492220732510009C451A /* 加密 */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE55207B0DC80037A069 /* AES */,
+				24A74923207357B6009C451A /* EncryptionViewController.h */,
+				24A74924207357B6009C451A /* EncryptionViewController.m */,
+				24A74925207357B6009C451A /* EncryptionViewController.xib */,
+			);
+			name = "加密";
+			path = "模式/加密";
+			sourceTree = "<group>";
+		};
 		24AC0C60205B756F0076C34D /* 单例模式 */ = {
 			isa = PBXGroup;
 			children = (
@@ -659,6 +697,21 @@
 			);
 			name = "单例模式";
 			path = "模式/单例模式";
+			sourceTree = "<group>";
+		};
+		24C5AE55207B0DC80037A069 /* AES */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE5B207B0DF20037A069 /* AES.h */,
+				24C5AE5C207B0DF20037A069 /* AES.m */,
+				24C5AE59207B0DF10037A069 /* NSData+Base64.h */,
+				24C5AE5D207B0DF20037A069 /* NSData+Base64.m */,
+				24C5AE56207B0DF10037A069 /* NSData+CommonCrypto.h */,
+				24C5AE57207B0DF10037A069 /* NSData+CommonCrypto.m */,
+				24C5AE58207B0DF10037A069 /* NSString+Base64.h */,
+				24C5AE5A207B0DF10037A069 /* NSString+Base64.m */,
+			);
+			path = AES;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -834,6 +887,7 @@
 				247D85CC2061097B00EE6145 /* 91.png in Resources */,
 				247D85832061097B00EE6145 /* 25.png in Resources */,
 				247D85B02061097B00EE6145 /* 66.png in Resources */,
+				2484320620720E7900E81354 /* NSURLSessionDataTaskViewController.xib in Resources */,
 				247D85822061097B00EE6145 /* 24.png in Resources */,
 				2485B289204E66A700292942 /* AnimationVC.xib in Resources */,
 				247D85CE2061097B00EE6145 /* 93.png in Resources */,
@@ -861,6 +915,7 @@
 				247D85C42061097B00EE6145 /* 84.png in Resources */,
 				247D85872061097B00EE6145 /* 29.png in Resources */,
 				247D85AC2061097B00EE6145 /* 62.png in Resources */,
+				24A74927207357B6009C451A /* EncryptionViewController.xib in Resources */,
 				247D85C02061097B00EE6145 /* 80.png in Resources */,
 				247D857C2061097B00EE6145 /* 19.png in Resources */,
 				247D859B2061097B00EE6145 /* 47.png in Resources */,
@@ -908,18 +963,24 @@
 				2492683E1FD64674007E26F7 /* ____.xcdatamodeld in Sources */,
 				247D85D820610DFA00EE6145 /* NGRViewController.m in Sources */,
 				249268351FD64674007E26F7 /* AppDelegate.m in Sources */,
+				24A74926207357B6009C451A /* EncryptionViewController.m in Sources */,
 				2485B27A204E2D4E00292942 /* CSViewController.m in Sources */,
 				247E7C39206DD0B700CF40BF /* NSObject+SimpleKVO.m in Sources */,
 				2485B27E204E2D4E00292942 /* SomethingViewController.m in Sources */,
+				24C5AE61207B0DF20037A069 /* NSData+Base64.m in Sources */,
 				2491575120525F0A00C198C4 /* Quartz2DView.m in Sources */,
+				24C5AE5F207B0DF20037A069 /* NSString+Base64.m in Sources */,
 				247E7C35206CC2B400CF40BF /* Reachability.m in Sources */,
 				2489C04F205909B600B78AAD /* LifeCycleViewController.m in Sources */,
+				24C5AE60207B0DF20037A069 /* AES.m in Sources */,
 				2489C05220591B1A00B78AAD /* YSWaterWaveView.m in Sources */,
 				249264392057B65000B725F5 /* CAlayerView.m in Sources */,
 				2485B283204E2D6400292942 /* AVPlayer.m in Sources */,
 				247E7C32206B42E100CF40BF /* NetViewController.m in Sources */,
+				24C5AE5E207B0DF20037A069 /* NSData+CommonCrypto.m in Sources */,
 				24AC0C66205BA7CD0076C34D /* SingleModel.m in Sources */,
 				2491574E205238D500C198C4 /* TouchTestView.m in Sources */,
+				2484320420720E4100E81354 /* NSURLSessionDataTaskViewController.m in Sources */,
 				249268321FD64674007E26F7 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1023,7 +1084,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1073,7 +1134,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1087,8 +1148,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UH97JUZFHT;
 				INFOPLIST_FILE = "设计模式/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "---.----";
+				PRODUCT_BUNDLE_IDENTIFIER = cm.viveco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1099,8 +1161,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = UH97JUZFHT;
 				INFOPLIST_FILE = "设计模式/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "---.----";
+				PRODUCT_BUNDLE_IDENTIFIER = cm.viveco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -15,6 +15,9 @@
 #import "NGRViewController.h"
 #import "NetViewController.h"
 #import "RunLTViewController.h"
+#import "NSURLSessionDataTaskViewController.h"
+#import "EncryptionViewController.h"
+
 
 @interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -32,9 +35,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD等",@"RunLoop-RunTime",@"网络请求等"];
+    _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD等",@"RunLoop-RunTime",@"网络请求等",@"加密问题"];
     
-    
+    //首先获取之前已经下载的文件属性
+
     _classStringVC = @[[CSViewController new],
                        [SKUViewController new],
                        [AnimationVC new],
@@ -42,7 +46,8 @@
                        [LifeCycleViewController new],
                        [NGRViewController new],
                        [RunLTViewController new],
-                       [[NetViewController alloc] initWithNibName:@"NetViewController" bundle:[NSBundle mainBundle]]];
+                       [[NetViewController alloc] initWithNibName:@"NetViewController" bundle:[NSBundle mainBundle]],
+                       [[EncryptionViewController alloc] initWithNibName:@"EncryptionViewController" bundle:[NSBundle mainBundle]]];
     
     [self.tableVIew registerClass:[UITableViewCell class] forCellReuseIdentifier:@"TabelViewCell"];
 
