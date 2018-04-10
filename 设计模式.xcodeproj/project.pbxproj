@@ -146,6 +146,13 @@
 		24C5AE5F207B0DF20037A069 /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE5A207B0DF10037A069 /* NSString+Base64.m */; };
 		24C5AE60207B0DF20037A069 /* AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE5C207B0DF20037A069 /* AES.m */; };
 		24C5AE61207B0DF20037A069 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE5D207B0DF20037A069 /* NSData+Base64.m */; };
+		24C5AE69207B46560037A069 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE67207B46560037A069 /* MapViewController.m */; };
+		24C5AE6A207B46560037A069 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 24C5AE68207B46560037A069 /* MapViewController.xib */; };
+		24C5AE6D207B47090037A069 /* BaiduMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE6C207B47090037A069 /* BaiduMapViewController.m */; };
+		24C5AE70207B47270037A069 /* CustomMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE6F207B47270037A069 /* CustomMapViewController.m */; };
+		24C5AE73207B474D0037A069 /* GaoDeMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE72207B474D0037A069 /* GaoDeMapViewController.m */; };
+		24C5AE76207B69750037A069 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C5AE75207B69750037A069 /* CoreLocation.framework */; };
+		24C5AE79207C50CA0037A069 /* CLLocation+Sino.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C5AE77207C50CA0037A069 /* CLLocation+Sino.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +344,18 @@
 		24C5AE5B207B0DF20037A069 /* AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AES.h; sourceTree = "<group>"; };
 		24C5AE5C207B0DF20037A069 /* AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AES.m; sourceTree = "<group>"; };
 		24C5AE5D207B0DF20037A069 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		24C5AE66207B46560037A069 /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		24C5AE67207B46560037A069 /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		24C5AE68207B46560037A069 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		24C5AE6B207B47090037A069 /* BaiduMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaiduMapViewController.h; sourceTree = "<group>"; };
+		24C5AE6C207B47090037A069 /* BaiduMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaiduMapViewController.m; sourceTree = "<group>"; };
+		24C5AE6E207B47270037A069 /* CustomMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomMapViewController.h; sourceTree = "<group>"; };
+		24C5AE6F207B47270037A069 /* CustomMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomMapViewController.m; sourceTree = "<group>"; };
+		24C5AE71207B474D0037A069 /* GaoDeMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GaoDeMapViewController.h; sourceTree = "<group>"; };
+		24C5AE72207B474D0037A069 /* GaoDeMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GaoDeMapViewController.m; sourceTree = "<group>"; };
+		24C5AE75207B69750037A069 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		24C5AE77207C50CA0037A069 /* CLLocation+Sino.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLLocation+Sino.m"; sourceTree = "<group>"; };
+		24C5AE78207C50CA0037A069 /* CLLocation+Sino.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLLocation+Sino.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -344,6 +363,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C5AE76207B69750037A069 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +522,8 @@
 		247E7C36206DD0AA00CF40BF /* 扩展类 */ = {
 			isa = PBXGroup;
 			children = (
+				24C5AE78207C50CA0037A069 /* CLLocation+Sino.h */,
+				24C5AE77207C50CA0037A069 /* CLLocation+Sino.m */,
 				247E7C38206DD0B700CF40BF /* NSObject+SimpleKVO.h */,
 				247E7C37206DD0B700CF40BF /* NSObject+SimpleKVO.m */,
 			);
@@ -599,6 +621,7 @@
 				2492684C1FD64675007E26F7 /* 设计模式Tests */,
 				249268571FD64675007E26F7 /* 设计模式UITests */,
 				2492682E1FD64674007E26F7 /* Products */,
+				24C5AE74207B69750037A069 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -660,6 +683,7 @@
 		249268661FD6469A007E26F7 /* 模式 */ = {
 			isa = PBXGroup;
 			children = (
+				24C5AE62207B432C0037A069 /* 地图 */,
 				24A7492220732510009C451A /* 加密 */,
 				247E7C36206DD0AA00CF40BF /* 扩展类 */,
 				247E7C2F206B41AC00CF40BF /* 网络请求等 */,
@@ -712,6 +736,55 @@
 				24C5AE5A207B0DF10037A069 /* NSString+Base64.m */,
 			);
 			path = AES;
+			sourceTree = "<group>";
+		};
+		24C5AE62207B432C0037A069 /* 地图 */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE66207B46560037A069 /* MapViewController.h */,
+				24C5AE67207B46560037A069 /* MapViewController.m */,
+				24C5AE68207B46560037A069 /* MapViewController.xib */,
+				24C5AE63207B432C0037A069 /* 百度地图 */,
+				24C5AE64207B432C0037A069 /* 自定义地图 */,
+				24C5AE65207B432C0037A069 /* 高德地图 */,
+			);
+			name = "地图";
+			path = "模式/地图";
+			sourceTree = "<group>";
+		};
+		24C5AE63207B432C0037A069 /* 百度地图 */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE6B207B47090037A069 /* BaiduMapViewController.h */,
+				24C5AE6C207B47090037A069 /* BaiduMapViewController.m */,
+			);
+			path = "百度地图";
+			sourceTree = "<group>";
+		};
+		24C5AE64207B432C0037A069 /* 自定义地图 */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE6E207B47270037A069 /* CustomMapViewController.h */,
+				24C5AE6F207B47270037A069 /* CustomMapViewController.m */,
+			);
+			path = "自定义地图";
+			sourceTree = "<group>";
+		};
+		24C5AE65207B432C0037A069 /* 高德地图 */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE71207B474D0037A069 /* GaoDeMapViewController.h */,
+				24C5AE72207B474D0037A069 /* GaoDeMapViewController.m */,
+			);
+			path = "高德地图";
+			sourceTree = "<group>";
+		};
+		24C5AE74207B69750037A069 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24C5AE75207B69750037A069 /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -888,6 +961,7 @@
 				247D85832061097B00EE6145 /* 25.png in Resources */,
 				247D85B02061097B00EE6145 /* 66.png in Resources */,
 				2484320620720E7900E81354 /* NSURLSessionDataTaskViewController.xib in Resources */,
+				24C5AE6A207B46560037A069 /* MapViewController.xib in Resources */,
 				247D85822061097B00EE6145 /* 24.png in Resources */,
 				2485B289204E66A700292942 /* AnimationVC.xib in Resources */,
 				247D85CE2061097B00EE6145 /* 93.png in Resources */,
@@ -961,10 +1035,12 @@
 				24845BC02068CA5400BC076A /* RunLTViewController.m in Sources */,
 				2485B288204E66A700292942 /* AnimationVC.m in Sources */,
 				2492683E1FD64674007E26F7 /* ____.xcdatamodeld in Sources */,
+				24C5AE70207B47270037A069 /* CustomMapViewController.m in Sources */,
 				247D85D820610DFA00EE6145 /* NGRViewController.m in Sources */,
 				249268351FD64674007E26F7 /* AppDelegate.m in Sources */,
 				24A74926207357B6009C451A /* EncryptionViewController.m in Sources */,
 				2485B27A204E2D4E00292942 /* CSViewController.m in Sources */,
+				24C5AE6D207B47090037A069 /* BaiduMapViewController.m in Sources */,
 				247E7C39206DD0B700CF40BF /* NSObject+SimpleKVO.m in Sources */,
 				2485B27E204E2D4E00292942 /* SomethingViewController.m in Sources */,
 				24C5AE61207B0DF20037A069 /* NSData+Base64.m in Sources */,
@@ -977,11 +1053,14 @@
 				249264392057B65000B725F5 /* CAlayerView.m in Sources */,
 				2485B283204E2D6400292942 /* AVPlayer.m in Sources */,
 				247E7C32206B42E100CF40BF /* NetViewController.m in Sources */,
+				24C5AE69207B46560037A069 /* MapViewController.m in Sources */,
+				24C5AE73207B474D0037A069 /* GaoDeMapViewController.m in Sources */,
 				24C5AE5E207B0DF20037A069 /* NSData+CommonCrypto.m in Sources */,
 				24AC0C66205BA7CD0076C34D /* SingleModel.m in Sources */,
 				2491574E205238D500C198C4 /* TouchTestView.m in Sources */,
 				2484320420720E4100E81354 /* NSURLSessionDataTaskViewController.m in Sources */,
 				249268321FD64674007E26F7 /* main.m in Sources */,
+				24C5AE79207C50CA0037A069 /* CLLocation+Sino.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1152,6 +1231,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cm.viveco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1165,6 +1245,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cm.viveco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
