@@ -23,11 +23,13 @@
     [self.view setValue:[UIColor whiteColor] forKey:@"backgroundColor"];
 }
 - (IBAction)baiduMap:(UIButton *)sender {
+    BaiduMapViewController * vc = [[BaiduMapViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)gaodeMap:(UIButton *)sender {
 }
 - (IBAction)customMap:(UIButton *)sender {
-    CustomMapViewController * vc = [[CustomMapViewController alloc] init];
+    CustomMapViewController * vc = [[CustomMapViewController alloc] initWithNibName:@"CustomMapViewController" bundle:[NSBundle mainBundle]];
     vc.title = @"自定义地图";
     [self.navigationController pushViewController:vc animated:YES];
 }

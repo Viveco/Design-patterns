@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 
 @interface BaiduMapViewController : UIViewController
 

@@ -8,11 +8,14 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import <BaiduMapAPI_Map/BMKMapComponent.h>
 #import <UserNotifications/UNNotificationSettings.h>
+#import <BaiduMapAPI_Search/BMKRouteSearch.h>
 
 
 @interface AppDelegate ()
 
+@property (strong, nonatomic) BMKMapManager *mapManager;
 @end
 
 @implementation AppDelegate
@@ -21,8 +24,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-   
+    _mapManager = [[BMKMapManager alloc] init];
+    bool ret = [_mapManager start:@"NCvnwaeNRaGWIzWpAH4yD8GGtv7eHnqZ" generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"百度地图没有启动");
+    }
     
+   
     if ( [[UIDevice currentDevice] systemVersion].floatValue >8.0) {
         UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
         // 进行注册

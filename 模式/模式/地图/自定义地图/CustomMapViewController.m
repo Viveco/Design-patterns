@@ -19,8 +19,6 @@
 
 @property (strong, nonatomic) CLGeocoder *geocoder;
 
-@property (strong, nonatomic) UIButton *gecode;
-
 @property (nonatomic, assign) CLLocationCoordinate2D myPlace;
 
 @property (nonatomic, assign) CLLocationCoordinate2D finishPlace;
@@ -36,13 +34,6 @@
     
     self.geocoder = [[CLGeocoder alloc]init];
     
-    self.gecode = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.gecode setTitle:@"地理编码" forState:UIControlStateNormal];
-    [self.gecode setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self.gecode addTarget:self action:@selector(gecode:) forControlEvents:UIControlEventTouchUpInside];
-    self.gecode.frame = CGRectMake(10, 600, 100, 30);
-    [self.view addSubview:self.gecode];
-    
     [self creatMap];
     [self location];
 }
@@ -50,7 +41,7 @@
     _mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 80, 375, 375)];
     _mapView.delegate = self;
     _mapView.showsUserLocation = YES;
-    _mapView.userTrackingMode = MKUserTrackingModeFollow;
+    _mapView.userTrackingMode = MKUserTrackingModeNone;
     [_mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(24 , 118), 300, 194) animated:YES];
     [self.view addSubview:self.mapView];
     
@@ -61,12 +52,9 @@
 
 - (void)longPressAction:(UILongPressGestureRecognizer *)sender{
 
-    //获取触摸的点
     CGPoint point = [sender locationInView:self.mapView];
-    //通过触摸的点获取经纬度
     CLLocationCoordinate2D coord = [self.mapView convertPoint:point toCoordinateFromView:self.mapView];
     self.finishPlace = coord;
-    //组装参数
     CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
     //获取信息
     [self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
@@ -75,8 +63,6 @@
             CLPlacemark *placeMark = placemarks.firstObject;
 
             NSArray *addressArray = placeMark.addressDictionary[@"FormattedAddressLines"];
-
-            //拼接地址
             NSMutableString *address = [[NSMutableString alloc] init];
 
             for (int i = 0; i < addressArray.count; i ++) {
@@ -92,17 +78,7 @@
 
     }];
 }
-- (void)gecode:(UIButton * )sender{
-    
-//    [self.geocoder geocodeAddressString:@"重庆" completionHandler:^(NSArray *placemarks, NSError *error) {
-//        //取得第一个地标，地标中存储了详细的地址信息，注意：一个地名可能搜索出多个地址
-//        CLPlacemark *placemark=[placemarks firstObject];
-//        CLLocation *location=placemark.location;//位置
-//        CLRegion *region=placemark.region;//区域
-//        NSDictionary *addressDic= placemark.addressDictionary;//详细地址信息字典,包含以下部分信息
-//        NSLog(@"位置:%@,区域:%@,详细信息:%@",location,region,addressDic);
-//    }];
-    
+- (IBAction)navigation:(UIButton *)sender {
     MKPlacemark *fromPlacemark = [[MKPlacemark alloc] initWithCoordinate:self.myPlace addressDictionary:nil];
     MKPlacemark *toPlacemark   = [[MKPlacemark alloc] initWithCoordinate:self.finishPlace addressDictionary:nil];
     MKMapItem *fromItem = [[MKMapItem alloc] initWithPlacemark:fromPlacemark];
@@ -110,6 +86,17 @@
     
     [self findDirectionsFrom:fromItem to:toItem];
 }
+- (IBAction)gecode:(UIButton *)sender {
+    [self.geocoder geocodeAddressString:@"重庆" completionHandler:^(NSArray *placemarks, NSError *error) {
+        //取得第一个地标，地标中存储了详细的地址信息，注意：一个地名可能搜索出多个地址
+        CLPlacemark *placemark=[placemarks firstObject];
+        CLLocation *location=placemark.location;//位置
+        CLRegion *region=placemark.region;//区域
+        NSDictionary *addressDic= [placemark.addressDictionary mutableCopy];//详细地址信息字典,包含以下部分信息
+        NSLog(@"位置:%@,区域:%@,详细信息:%@",location,region,addressDic);
+    }];
+}
+
 -(void)findDirectionsFrom:(MKMapItem *)from to:(MKMapItem *)to{
     
 //    NSDictionary *launchDic = @{
@@ -138,23 +125,6 @@
                     NSLog(@"%@",obj.instructions);
                 }];
             }];
-            
-//            for (MKRoute *route in response.routes) {
-//
-//                //                MKRoute *route = response.routes[0];
-//                for(id<MKOverlay> overLay in self.mapView.overlays) {
-//                    [self.mapView removeOverlay:overLay];
-//                }
-//
-//                [self.mapView addOverlay:route.polyline level:0];
-//                double lat = self.mapView.region.center.latitude;
-//                double lon = self.mapView.region.center.longitude;
-//                double latDelta = self.mapView.region.span.latitudeDelta * 100000;
-//                double lonDelta = self.mapView.region.span.longitudeDelta * 100000;
-//                [self.mapView setRegion:MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(lat , lon), 200, 126)
-//                                   animated:YES];
-//            }
-
         }
     }];
 }
@@ -182,10 +152,10 @@
     annotationView.leftCalloutAccessoryView=imageView;
     annotationView.canShowCallout=YES;
     annotationView.animatesDrop=YES;
+    annotationView.draggable = YES;
     UILabel *label =[[UILabel alloc] initWithFrame:CGRectMake(0,0,30,30)];
     label.text=@">>";
     annotationView.rightCalloutAccessoryView=label;
-
     annotationView.pinTintColor = [UIColor greenColor];
 
     return annotationView;
@@ -197,8 +167,9 @@
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
     NSLog(@"%@",[view.annotation title]);
 }
-//
-////覆盖物的回调方法
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState fromOldState:(MKAnnotationViewDragState)oldState{
+    NSLog(@"拖动了");
+}
 
 -(MKOverlayRenderer*)mapView:(MKMapView*)mapView rendererForOverlay:(id)overlay {
     MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
@@ -206,6 +177,8 @@
     renderer.strokeColor = HEX_RGBA(0xf26f5f, 1);
     return renderer;
 }
+
+
 
 
 
