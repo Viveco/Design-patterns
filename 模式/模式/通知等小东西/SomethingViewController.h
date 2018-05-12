@@ -12,8 +12,9 @@
 #import "CAlayerView.h"
 
 
-@class ValueForKey;
+
 @class BlockModel;
+@class BAD;
 @protocol SomethingVCDelegate <NSObject>
 
 @required
@@ -32,18 +33,6 @@
 
 
 
-
-@interface ValueForKey : NSObject
-
-@property (copy, nonatomic) NSString *name;
-@property (assign, nonatomic) NSInteger age;
-@property (copy, nonatomic) NSString *sex;
-@property (copy, nonatomic) NSString *grade;
-
-@end
-
-
-
 typedef void(^Block)(id responder);
 
 @interface BlockModel : NSObject
@@ -53,6 +42,12 @@ typedef void(^Block)(id responder);
 + (void)testBlockWithSelf:(void(^)(id responder))block;
 
 + (void)testPropertyWith:(Block)block;
+
+@end
+
+
+
+@interface BAD : BlockModel
 
 @end
 

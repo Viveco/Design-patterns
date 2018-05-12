@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class LifeView;
 @interface LifeCycleViewController : UIViewController
+
+@end
+
+
+@interface LifeView : UIView
 
 @end

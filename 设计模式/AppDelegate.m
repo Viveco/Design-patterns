@@ -13,7 +13,7 @@
 #import <BaiduMapAPI_Search/BMKRouteSearch.h>
 
 
-@interface AppDelegate ()
+@interface AppDelegate ()<UNUserNotificationCenterDelegate>
 
 @property (strong, nonatomic) BMKMapManager *mapManager;
 @end
@@ -31,18 +31,41 @@
     }
     
    
-    if ( [[UIDevice currentDevice] systemVersion].floatValue >8.0) {
-        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert categories:nil];
-        // 进行注册
-        [application registerUserNotificationSettings:settings];
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        //iOS10特有
+        UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+        // 必须写代理，不然无法监听通知的接收与点击
+        center.delegate = self;
+        [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge | UNAuthorizationOptionSound) completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                // 点击允许
+                NSLog(@"注册成功");
+                [center getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+                    NSLog(@"%@", settings);
+                }];
+            } else {
+                // 点击不允许
+                NSLog(@"注册失败");
+            }
+        }];
+    }else if ([[UIDevice currentDevice].systemVersion floatValue] >8.0){
+        //iOS8 - iOS10
+        [application registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeSound | UIUserNotificationTypeBadge categories:nil]];
+        
+    }else if ([[UIDevice currentDevice].systemVersion floatValue] < 8.0) {
+        //iOS8系统以下
+        [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
     }
+    // 注册获得device Token
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 20;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
+
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -72,6 +95,34 @@
     [self saveContext];
 }
 
+#pragma mark --  推送通知
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    NSLog(@"%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
+}
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions))completionHandler{
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    UNNotificationRequest *request = notification.request; // 收到推送的请求
+    UNNotificationContent *content = request.content; // 收到推送的消息内容
+    NSNumber *badge = content.badge;  // 推送消息的角标
+    NSString *body = content.body;    // 推送消息体
+    UNNotificationSound *sound = content.sound;  // 推送消息的声音
+    NSString *subtitle = content.subtitle;  // 推送消息的副标题
+    NSString *title = content.title;  // 推送消息的标题
+
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        NSLog(@"iOS10 前台收到远程通知");
+    }
+    else {
+        // 判断为本地通知
+        NSLog(@"iOS10 前台收到本地通知:{nbody:%@，ntitle:%@,nsubtitle:%@,nbadge：%@，nsound：%@，nuserInfo：%@}",body,title,subtitle,badge,sound,userInfo);
+    }
+    completionHandler(UNNotificationPresentationOptionBadge|UNNotificationPresentationOptionSound|UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以设置
+}
+
+//当点击进入应用时触发；
+- (void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)(void))completionHandler{
+     completionHandler();
+}
 
 #pragma mark - Core Data stack
 

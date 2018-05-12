@@ -30,6 +30,7 @@
     [self somethingRuntime];
 }
 - (void)somethingFoundataionRunLoop{
+ 
     NSLog(@"当前Runloop：%@\n主线程：%@",[NSRunLoop currentRunLoop],[NSRunLoop mainRunLoop]);
 }
 - (void)somthingCFRunLoop{
@@ -91,14 +92,13 @@
     
     Method isNameThod = class_getInstanceMethod([model class], @selector(isName));
     class_replaceMethod([model class], @selector(isSex), method_getImplementation(isNameThod), method_getTypeEncoding(isNameThod));
-    NSLog(@"替换方法，然后名字是：%@", [model isSex]);
+    NSLog(@"替换方法，然后名字是：%@", [model isName]);
     
     // 关联对象
     NSString * class = @"一年级";
     objc_setAssociatedObject(model, @"grade", class, OBJC_ASSOCIATION_COPY_NONATOMIC);
     NSString * classNum = objc_getAssociatedObject(model, @"grade");
     NSLog(@"%@",classNum);
-    
     
 }
 

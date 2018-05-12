@@ -52,9 +52,10 @@
     }];
 }
 - (IBAction)AES:(UIButton *)sender {
-    
+   NSLog(@"%@",[AES encrypt:@"aaa" password:@"11111"]);
 }
 - (IBAction)decodeAES:(UIButton *)sender {
+   NSLog(@"%@", [AES decrypt:@"mVgUtZKfFmb6u8JHcwOpuw==" password:@"11111"]);
 }
 
 - (void)didReceiveMemoryWarning {

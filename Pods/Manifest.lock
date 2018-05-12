@@ -1,12 +1,20 @@
 PODS:
   - BaiduMapKit (3.0.0)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - MJRefresh (3.1.12)
 
 DEPENDENCIES:
   - BaiduMapKit
+  - FMDB
+  - MJRefresh
 
 SPEC CHECKSUMS:
   BaiduMapKit: de2a726d5296d6b2dc0e974b683af73153608dcd
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
 
-PODFILE CHECKSUM: 4a3bc761b1d554b0ff3cd0e2885b5e8a2ade3d4d
+PODFILE CHECKSUM: 6b29aba988fbf40a6574cb6cfa2ab4b4d85eb7b0
 
 COCOAPODS: 1.4.0.rc.1

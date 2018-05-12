@@ -5,6 +5,8 @@ target '设计模式' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
    use_frameworks!
    pod “BaiduMapKit”
+   pod 'FMDB'
+pod 'MJRefresh'
   # Pods for 设计模式
 
   target '设计模式Tests' do

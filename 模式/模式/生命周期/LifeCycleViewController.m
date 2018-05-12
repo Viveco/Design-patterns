@@ -11,7 +11,7 @@
 @interface LifeCycleViewController ()<UIScrollViewDelegate>
 
 @property (strong, nonatomic) UIScrollView *scrollView;
-@property (strong, nonatomic) UIImageView *imgv;
+@property (strong, nonatomic) LifeView *imgv;
 @property (copy, nonatomic, getter=IDString) NSString *idString;
 
 @end
@@ -69,7 +69,7 @@
     scrollView.delegate = self;
     self.scrollView = scrollView;
     
-    UIImageView *imgv = [[UIImageView alloc]initWithFrame:CGRectMake(20, 10, 50, 80)];
+    LifeView *imgv = [[LifeView alloc]initWithFrame:CGRectMake(20, 10, 50, 80)];
     imgv.backgroundColor = [UIColor grayColor];
     [self.scrollView addSubview:imgv];
     self.imgv = imgv;
@@ -140,6 +140,66 @@
 }
 - (void)scrollViewDidZoom:(UIScrollView *)scrollView{
     self.imgv.center = self.scrollView.center;
+}
+
+@end
+
+
+
+
+@interface LifeView ()
+{
+    NSInteger count;
+}
+
+@end
+
+@implementation LifeView
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self)
+    {
+        NSLog(@"<-- 1 %s , count = %@-->", __func__, @(count++));
+    }
+    return self;
+}
+
+
+- (void)willMoveToSuperview:(nullable UIView *)newSuperview
+{
+    NSLog(@"<-- 2 %s , count = %@-->", __func__, @(count++));
+}
+
+- (void)didMoveToSuperview
+{
+    NSLog(@"<-- 3 %s , count = %@-->", __func__, @(count++));
+}
+
+- (void)willMoveToWindow:(nullable UIWindow *)newWindow
+{
+    NSLog(@"<-- 4/7 %s , count = %@-->", __func__, @(count++));
+}
+
+- (void)didMoveToWindow
+{
+    NSLog(@"<-- 5/8 %s , count = %@-->", __func__, @(count++));
+}
+
+- (void)layoutSubviews
+{
+    NSLog(@"<-- 6 %s , count = %@-->", __func__, @(count++));
+}
+
+- (void)removeFromSuperview
+{
+    NSLog(@"<-- 9 %s , count = %@-->", __func__, @(count++));
+}
+
+- (void)dealloc
+{
+    NSLog(@"<-- 10 %s , count = %@-->", __func__, @(count++));
 }
 
 @end

@@ -9,6 +9,18 @@
 #import "SomethingViewController.h"
 #import <objc/runtime.h>
 
+static UIButton * Button(UIColor * color, NSString * title)
+{
+    UIButton * uibu = [UIButton buttonWithType:UIButtonTypeCustom];
+    uibu.backgroundColor = color;
+    [uibu setTitle:title forState:UIControlStateNormal];
+    return uibu;
+}
+
+static inline int sum (int a ,int b){
+    return  a + b;
+}
+
 @interface SomethingViewController ()
 
 @property (strong, nonatomic) BlockModel *model;
@@ -28,12 +40,14 @@
 //    [self somethingNote];
 //    [self somethingAlert];
 //    [self somethingTime];
-//    [self somethingSave];
 //    [self somethingTouch];
-//    [self somethingQuartz2D];
-    [self somethingCALayer];
+    [self somethingQuartz2D];
+//    [self somethingCALayer];
 //    [self somethingBlock];
     
+    Button([UIColor redColor], @"按钮");
+    NSLog(@"%d",sum(10, 10));
+ 
 }
 #pragma mark  关于进制
 - (void)somethingSystem{
@@ -102,73 +116,6 @@
     [formatter setDateFormat:@"YYYY-MM-dd"];
     NSLog(@"%@",[formatter stringFromDate:date]);
 }
-#pragma mark -- 数据归档问题
-- (void)somethingSave{
-    
-    // 字典转模型
-    ValueForKey * value = [[ValueForKey alloc] init];
-    NSDictionary * dic = @{@"name":@"Tom"};
-    [value setValuesForKeysWithDictionary:dic];
-    NSLog(@"%@",value.name);
-
-    // 归档问题
-    
-    NSString *path = NSHomeDirectory();
-    NSLog(@"沙盒%@",path);
-
-    NSArray * documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * documentPath = [documentPaths firstObject];
-    NSLog(@"%@",documentPath);
-    
-    NSArray * LibraryPaths =  NSSearchPathForDirectoriesInDomains(NSLibraryDirectory,NSUserDomainMask,YES);
-    NSString *LibraryPath = [LibraryPaths objectAtIndex:0];
-    NSLog(@"%@",LibraryPath);
-    
-    documentPath = [documentPath stringByAppendingPathComponent:@"valueModel.archiver"];
-    ValueForKey * model = [[ValueForKey alloc] init];
-    model.name = @"Tom";
-    model.age = 12;
-    model.grade = @"1";
-    model.sex = @"man";
-
-    NSData * data = [NSKeyedArchiver archivedDataWithRootObject:model]; // 归档到nadata
-    
-    [NSKeyedArchiver archiveRootObject:model toFile:documentPath]; // 归档到documentPath 路径
-    ValueForKey *person = [NSKeyedUnarchiver unarchiveObjectWithFile:documentPath];
-    NSLog(@"%@",person.name);
-    
-    [self twoObjectSaveArchiverWithPath:[documentPaths firstObject]];
-    
-    
-    [person setValuesForKeysWithDictionary:[NSDictionary new]]; // dic 转model
-    
-}
-- (void)twoObjectSaveArchiverWithPath:(NSString * )path{
-    
-    path = [path stringByAppendingPathComponent:@"twoValueModel.archiver"];
-    
-    ValueForKey * model1 = [[ValueForKey alloc] init];
-    model1.name = @"Bob";
-    
-    ValueForKey * model2 = [[ValueForKey alloc] init];
-    model2.name = @"Jack";
-    // 存
-    NSMutableData * saveData =[[NSMutableData alloc] init];
-    NSKeyedArchiver * archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:saveData];
-    [archiver encodeObject:model1 forKey:@"model1"];
-    [archiver encodeObject:model2 forKey:@"model2"];
-    [archiver finishEncoding];
-    [saveData writeToFile:path atomically:YES];
-    
-    // 取
-    NSData *data = [NSData dataWithContentsOfFile:path];
-
-    NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-    ValueForKey *person1 = [unarchiver decodeObjectForKey:@"model1"];
-    ValueForKey *person2 = [unarchiver decodeObjectForKey:@"model2"]; // 新解析出来的对象和原来的指针不一样，因此可以实现mutableCopy
-    [unarchiver finishDecoding];
-    NSLog(@"%@,%@",person1.name,person2.name);
-}
 
 #pragma mark -- touche
 
@@ -195,71 +142,40 @@
 #pragma mark --  测试block
 - (void)somethingBlock{
     
+    
+    void (^block)(SomethingViewController * vc) = ^(SomethingViewController * vc){
+        NSLog(@"%@",vc.title);
+    };
+    
+    block(self);
+    
+    
+    
+    
+    
+    
+    
     [BlockModel testBlockWithSelf:^(id responder) {
         NSLog(@"%@",responder);
     }];
     
     [BlockModel testPropertyWith:^(id responder) {
-        self.view.backgroundColor = [UIColor redColor];
         NSLog(@"%@",responder);
     }];
-    
     
     WEAK_SELF
     self.model = [[BlockModel alloc] init];
     __block BOOL falg = YES;
     self.model.MyBlock = ^(id responder) {
-        wself.view.backgroundColor = [UIColor redColor];
+        wself.view.backgroundColor = [UIColor grayColor];
         falg = NO;
+        NSLog(@"%@",responder);
     };
+    
+    self.model.MyBlock(@10);
+
 }
 @end
-
-
-
-
-@implementation ValueForKey
-
-- (void)encodeWithCoder:(NSCoder *)aCoder{
-//    encodeRuntime(ValueForKey) // 宏封装
-    unsigned int count = 0;
-    Ivar * ivars = class_copyIvarList([ValueForKey class], &count);
-    for (int i = 0; i < count; i ++) {
-        
-        Ivar ivar = ivars[i];
-        
-        const char * name = ivar_getName(ivar);
-        NSString * key = [NSString stringWithUTF8String:name];
-        id value = [self valueForKey:key];
-        [aCoder encodeObject:value forKey:key];
-    }
-    free(ivars);
-}
-
-- (instancetype)initWithCoder:(NSCoder * )aDecoder{
-//    initCoderRuntime(ValueForKey)// 宏封装
-    if (self = [super init]) {
-        
-        unsigned int count = 0;
-        Ivar * ivars = class_copyIvarList([ValueForKey class], &count);
-        for (int i = 0; i < count; i ++) {
-            Ivar  ivar = ivars[i];
-            const char * name = ivar_getName(ivar);
-            NSString * key = [NSString stringWithUTF8String:name];
-            id  value = [aDecoder decodeObjectForKey:key];
-            [self setValue:value forKey:key];
-        }
-        free(ivars);
-    }return self;
-}
-
-- (instancetype)init{
-    if (self = [super init]) {
-    }return self;
-}
-
-@end
-
 
 
 //对于block 来说如果没有对象进行持有的情况下，（类似不是 self.model来调用），那么block 内部是可以使用self，这样self并没有对这个对象进行持有。+ 号方法调用也是没有进行持有，所以可以进行调用，之后或许会出现 +号方法循环调用在理解说明，直接释放block= nil 就可以。
@@ -271,6 +187,18 @@
 
 + (void)testBlockWithSelf:(void (^)(id))block{
     block(@"直接参数测试");
+}
+@end
+
+
+
+@implementation BAD
+
+- (instancetype)init{
+    if (self = [super init]) {
+        NSLog(@"%@",NSStringFromClass([self class]));
+        NSLog(@"%@",NSStringFromClass([super class]));
+    }return self;
 }
 
 @end

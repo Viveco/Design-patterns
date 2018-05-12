@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+
+//extern NSString * idstring = @"来自NGRViewController的extern修饰变量";
+
 @class JPOperation;
+
 @interface NGRViewController : UIViewController
 
 @end

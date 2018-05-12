@@ -10,7 +10,7 @@
 
 #define angle2Rad(angle) ((angle) / 180.0 * M_PI)
 
-@interface CAlayerView()
+@interface CAlayerView()<CALayerDelegate>
 
 @property (strong, nonatomic) UISlider *slider;
 @property (strong, nonatomic) UIBezierPath *path;

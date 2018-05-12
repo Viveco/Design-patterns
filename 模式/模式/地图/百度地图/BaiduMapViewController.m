@@ -202,9 +202,6 @@
 - (void)mapview:(BMKMapView *)mapView onLongClick:(CLLocationCoordinate2D)coordinate{
     NSLog(@"长按了");
 }
-- (void)mapView:(BMKMapView *)mapView didUpdateUserLocation:(BMKUserLocation *)userLocation NS_AVAILABLE(10_9, 4_0){
-    self.view.backgroundColor = [UIColor greenColor];
-}
 - (void)mapView:(BMKMapView *)mapView annotationView:(BMKAnnotationView *)view didChangeDragState:(BMKAnnotationViewDragState)newState fromOldState:(BMKAnnotationViewDragState)oldState{
     NSLog(@"拖动大头针了");
 }
@@ -213,8 +210,8 @@
 }
 
 
-#pragma mark --定位===============================
 
+#pragma mark --定位==================================================================
 - (void)creatLocService{
     
     _locService = [[BMKLocationService alloc] init];
@@ -235,6 +232,8 @@
 
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,
           userLocation.location.coordinate.longitude);
+    
+    
     
     //从manager获取左边
     CLLocation *location = userLocation.location;
@@ -286,7 +285,7 @@
         }
 }
 
-#pragma mark -- 点聚合管理===============================================================
+#pragma mark -- 点聚合管理======================================================================
 - (void)clusterCaches{
     
     _clusterCaches = [[NSMutableArray alloc] init];

@@ -11,7 +11,7 @@
 #import "Reachability.h"
 
 
-@interface NetViewController ()<NSXMLParserDelegate,NSURLSessionDownloadDelegate,NSURLSessionDataDelegate>
+@interface NetViewController ()<NSXMLParserDelegate,NSURLSessionDownloadDelegate,NSURLSessionDataDelegate,NSURLSessionDelegate>
 
 @property (strong, nonatomic) IBOutlet UIImageView *downImageView;
 
@@ -138,7 +138,7 @@
     
     self.session = [NSURLSession sessionWithConfiguration:config delegate:self delegateQueue:[NSOperationQueue mainQueue]];
     
-    NSString * urlString = @"http://www.deskcar.com/desktop/fengjing/20125700336/1.jpg";
+    NSString * urlString = @"http://www.deskcar.com/desktop/fengjing/20125700336/18.jpg";
     urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL * url  = [NSURL URLWithString:urlString];
     NSMutableURLRequest * request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
@@ -165,7 +165,7 @@
     });
     
 }
- // NSURLSessionDownloadTask
+#pragma mark -- NSURLSessionDownloadTask
 - (IBAction)starDown:(UIButton *)sender {
     [self.task resume];
 }
@@ -182,27 +182,13 @@
     self.resumeData = nil;
 }
 
- // NSURLSessionDataTask
-- (IBAction)starUp:(id)sender {
-    [_dataTask resume];
-}
-- (IBAction)pauseUp:(id)sender {
-    [_dataTask suspend];
-}
-
-- (IBAction)recoverUp:(id)sender {
-    [_dataTask resume];
-}
-
-
-
 #pragma mark -- NSURLSessionDownLoadDelegate
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didWriteData:(int64_t)bytesWritten totalBytesWritten:(int64_t)totalBytesWritten totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite{
     
     if (session == self.session) {
         NSLog(@"已经下载了%lf",(float)1.0*totalBytesWritten / totalBytesExpectedToWrite );
     }
-  
+    
 }
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location{
@@ -221,6 +207,35 @@
         self.outStream = nil;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#pragma mark -- NSURLSessionDataTask
+- (IBAction)starUp:(id)sender {
+    [_dataTask resume];
+}
+- (IBAction)pauseUp:(id)sender {
+    [_dataTask suspend];
+}
+
+- (IBAction)recoverUp:(id)sender {
+    [_dataTask resume];
+}
+
+
+
+
 
 
 #pragma mark-- NSURLSessionDataDelegate
@@ -252,6 +267,11 @@
         completionHandler(NSURLSessionAuthChallengeUseCredential , card);
     }
 }
+
+
+
+
+
 
 #pragma mark --- 输入一个字符串,则在沙盒中生成路径
 // 传入字符串,直接在沙盒Cache中生成路径

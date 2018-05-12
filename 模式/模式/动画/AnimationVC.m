@@ -8,6 +8,7 @@
 
 #import "AnimationVC.h"
 #import "YSWaterWaveView.h"
+#import "PringtString.h"
 
 
 @interface AnimationVC ()<UIScrollViewDelegate,CAAnimationDelegate>
@@ -24,9 +25,9 @@
     [super viewDidLoad];
     [self.view addSubview:self.animationBT];
 
-    [self waveViewAnimation];
+//    [self waveViewAnimation];
 //    [self CABasicAnimation];
-//    [self CAkeyframeAnimation];
+    [self CAkeyframeAnimation];
 //    [self CAAnimationGroup];
 //    [self CATransition];
 }
@@ -37,6 +38,12 @@
     YSWaterWaveView * view = [[YSWaterWaveView alloc] initWithFrame:CGRectMake(10,100, 150, 150)];
     self.waveView = view;
     [self.view addSubview:self.waveView];
+    
+    
+    
+    UIImageView * image = [[UIImageView alloc] initWithFrame:CGRectMake(10, 300, 200, 200)];
+    image.image = [UIImage imageNamed:@"1.png"];
+    [self.view addSubview:image];
 }
 
 
@@ -57,6 +64,7 @@
 //    animation.repeatDuration = 3; // 如果重复，则重复的时间
     animation.beginTime = CACurrentMediaTime();// 每次动画 什么时候开始
     animation.delegate = self;
+
     [self.animationBT.layer addAnimation:animation forKey:@"CABasicAnimation"];
 }
 

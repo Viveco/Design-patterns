@@ -16,7 +16,7 @@
     NSInteger ticketCount;
     UIImageView * imageView;
 }
-
+@property (copy, nonatomic) NSString *name;
 @end
 
 @implementation NGRViewController
@@ -29,11 +29,18 @@
     imageView.frame = CGRectMake(10, 100, 200, 200);
     [self.view addSubview:imageView];
     
+    NSMutableString *mStr = [NSMutableString stringWithFormat:@"mutablestring----"];
+    self.name = mStr;
+    [mStr appendString:@"addstriing"];//name的修饰符为copy时，name的结果为mutablestring----
+    NSLog(@"%@",mStr);//name的修饰符为strong时，name的结果为mutablestring----addstriing
+    NSLog(@"%@",self.name);
+    
 //    [self somethingNSTimer];
 //    [self somethingDisplayLink];
 //    [self somethingGCD];
 //    [self somethingNSThread];
-    [self somethingOperation];
+//    [self somethingOperation];
+    [self dispatchSignal];
 }
 
 #pragma mark -- NSTimer
@@ -119,15 +126,15 @@
     
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //执行1个耗时的异步操作
+        NSLog(@"操作一");
     });
     
     dispatch_group_async(group, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        //执行1个耗时的异步操作
+        NSLog(@"操作二");
     });
     
     dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        // 前面两个异步操作完成之后，回到主线程操作
+        NSLog(@"前两个执行完 执行这个");
     });
     
     
@@ -151,8 +158,70 @@
 //    DISPATCH_QUEUE_SERIAL  串行队列
 //    DISPATCH_QUEUE_CONCURRENT  并行队列
     
+    
+    
+    
+    // 网络请求有可能是异步的，什么时候完成也就不确定了。
+    
+    dispatch_group_t group1 = dispatch_group_create();
+    dispatch_group_enter(group1);
+    dispatch_group_async(group1, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //请求1
+        NSLog(@"请求一");
+        dispatch_group_leave(group1);
+    });
+    dispatch_group_enter(group1);
+    dispatch_group_async(group1, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //请求2
+        NSLog(@"请求二");
+        dispatch_group_leave(group1);
+    });
+    dispatch_group_enter(group1);
+    dispatch_group_async(group1, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //请求3
+        NSLog(@"请求三");
+        dispatch_group_leave(group1);
+    });
+    dispatch_group_notify(group1, dispatch_get_main_queue(), ^{
+        //界面刷新
+        NSLog(@"任务均完成，刷新界面");
+    });
+
+    
+    [self dispatchSignal];
 }
 
+-(void)dispatchSignal{
+    //crate的value表示，最多几个资源可访问
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(1);
+    dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    
+    //任务1
+    dispatch_async(quene, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"run task 1");
+        sleep(1);
+        NSLog(@"complete task 1");
+        dispatch_semaphore_signal(semaphore);
+    });
+    //任务2
+    dispatch_async(quene, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"run task 2");
+        sleep(1);
+        NSLog(@"complete task 2");
+        dispatch_semaphore_signal(semaphore);
+    });
+    //任务3
+    dispatch_async(quene, ^{
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+        NSLog(@"run task 3");
+        sleep(1);
+        NSLog(@"complete task 3");
+        dispatch_semaphore_signal(semaphore);
+    });
+    
+}
 
 #pragma mark -- NSThread
 - (void)somethingNSThread{
@@ -226,7 +295,7 @@
     
     //NSBlockOperation, 只有一个操作的时候在主线程中执行，如果有多个操作，则除了第一个在主线程，其他的在子线程中异步执行,但是如果添加到 Queue 队列中就会全部开启新线程执行.
     NSBlockOperation * op2= [NSBlockOperation blockOperationWithBlock:^{
-        NSLog(@"第一个操作吗 ？");
+        NSLog(@"第一个操作吗");
         NSLog(@"%s, %@", __func__,[NSThread currentThread]);
     }];
     [op2 addExecutionBlock:^{
@@ -246,7 +315,7 @@
 //    NSOperationQueue * queue  = [NSOperationQueue mainQueue];// 主线程
     NSOperationQueue * queue = [[NSOperationQueue alloc] init];// 默认并发处理
     queue.maxConcurrentOperationCount = 1;// 串行队列
-    [op3 addDependency:op2];// 操作op2 执行完才会执行op1
+    [op3 addDependency:op2];// 操作op2 执行完才会执行op3
     [op2 addDependency:op1];
 
     [queue addOperation:op2];
