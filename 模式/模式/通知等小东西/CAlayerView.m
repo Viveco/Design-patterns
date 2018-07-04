@@ -69,6 +69,8 @@
     [self setNeedsDisplay];
 }
 - (void)drawRect:(CGRect)rect{
+    
+    NSLog(@"%lf %lf %lf %lf",self.bounds.origin.x,self.bounds.origin.y,self.bounds.size.width,self.bounds.size.height);
     CGFloat endangle = self.slider.value * M_PI * 2 / self.slider.maximumValue;
     UIBezierPath * path = [UIBezierPath bezierPath];
     [path moveToPoint:CGPointMake(125, 125)];

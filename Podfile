@@ -7,6 +7,8 @@ target '设计模式' do
    pod “BaiduMapKit”
    pod 'FMDB'
 pod 'MJRefresh'
+pod 'YYKit'
+pod 'Masonry'
   # Pods for 设计模式
 
   target '设计模式Tests' do

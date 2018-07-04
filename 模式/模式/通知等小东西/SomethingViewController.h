@@ -37,7 +37,7 @@ typedef void(^Block)(id responder);
 
 @interface BlockModel : NSObject
 
-@property (copy, nonatomic) void(^MyBlock)(id responder);
+@property (copy, nonatomic) UIView *(^MyBlock)(id responder);
 
 + (void)testBlockWithSelf:(void(^)(id responder))block;
 

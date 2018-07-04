@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIButton *animationBT;
 @property (strong, nonatomic) YSWaterWaveView * waveView;
 
+
 @end
 
 @implementation AnimationVC
@@ -31,7 +32,7 @@
 //    [self CAAnimationGroup];
 //    [self CATransition];
 }
-
+    
 #pragma mark -- 简单水波动画等
 - (void)waveViewAnimation{
     

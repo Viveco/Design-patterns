@@ -41,8 +41,8 @@ static inline int sum (int a ,int b){
 //    [self somethingAlert];
 //    [self somethingTime];
 //    [self somethingTouch];
-    [self somethingQuartz2D];
-//    [self somethingCALayer];
+//    [self somethingQuartz2D];
+    [self somethingCALayer];
 //    [self somethingBlock];
     
     Button([UIColor redColor], @"按钮");
@@ -134,9 +134,20 @@ static inline int sum (int a ,int b){
 #pragma mark -- Calayer
 - (void)somethingCALayer{
     
-    CAlayerView * calayerView = [[CAlayerView alloc] initWithFrame:CGRectMake(0, 100, 375, 667)];
+    CAlayerView * calayerView = [[CAlayerView alloc] initWithFrame:CGRectMake(100, 64, 275, 567)];
     [self.view addSubview:calayerView];
     
+    [self setupTab4](1, 3);
+}
+
+- (int(^)(int, int))setupTab4
+{
+    int(^block)(int, int) = ^(int a, int b){
+        int c = a + b;
+        NSLog(@"%d", c);
+        return c;
+    };
+    return block;
 }
 
 #pragma mark --  测试block
@@ -155,6 +166,9 @@ static inline int sum (int a ,int b){
     
     
     
+    
+    
+    
     [BlockModel testBlockWithSelf:^(id responder) {
         NSLog(@"%@",responder);
     }];
@@ -166,10 +180,11 @@ static inline int sum (int a ,int b){
     WEAK_SELF
     self.model = [[BlockModel alloc] init];
     __block BOOL falg = YES;
-    self.model.MyBlock = ^(id responder) {
+    self.model.MyBlock = ^UIView * (id responder) {
         wself.view.backgroundColor = [UIColor grayColor];
         falg = NO;
         NSLog(@"%@",responder);
+        return nil;
     };
     
     self.model.MyBlock(@10);
