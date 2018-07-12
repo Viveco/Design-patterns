@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		130C0EA220EF74610032D6CF /* FileScript.py in Resources */ = {isa = PBXBuildFile; fileRef = 130C0EA120EF74610032D6CF /* FileScript.py */; };
 		2429E7602090179500CE99D0 /* libaa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2429E75F2090179400CE99D0 /* libaa.a */; };
 		2429E78E2090669900CE99D0 /* RunLoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2429E78C2090669900CE99D0 /* RunLoopViewController.m */; };
 		2429E78F2090669900CE99D0 /* RunLoopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2429E78D2090669900CE99D0 /* RunLoopViewController.xib */; };
@@ -208,6 +209,7 @@
 /* Begin PBXFileReference section */
 		0FB479DCD8626CC132E41DA3 /* Pods-设计模式UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-设计模式UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-设计模式UITests/Pods-设计模式UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		0FCB155CAA4BF313C8DEC542 /* Pods-设计模式Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-设计模式Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-设计模式Tests/Pods-设计模式Tests.release.xcconfig"; sourceTree = "<group>"; };
+		130C0EA120EF74610032D6CF /* FileScript.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = FileScript.py; sourceTree = "<group>"; };
 		1BAD16563C71E4AC61994D9D /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2429E75F2090179400CE99D0 /* libaa.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libaa.a; sourceTree = "<group>"; };
 		2429E7612090179F00CE99D0 /* PringtString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PringtString.h; sourceTree = "<group>"; };
@@ -776,6 +778,7 @@
 		249268241FD64674007E26F7 = {
 			isa = PBXGroup;
 			children = (
+				130C0EA120EF74610032D6CF /* FileScript.py */,
 				2492682F1FD64674007E26F7 /* 设计模式 */,
 				2492684C1FD64675007E26F7 /* 设计模式Tests */,
 				249268571FD64675007E26F7 /* 设计模式UITests */,
@@ -1008,6 +1011,7 @@
 				2492682B1FD64674007E26F7 /* Resources */,
 				710D203C237E6AD94B2BDAE0 /* [CP] Embed Pods Frameworks */,
 				CC1040D6A1056BEAD8DEF246 /* [CP] Copy Pods Resources */,
+				130C0EA020EF73B50032D6CF /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1223,6 +1227,7 @@
 				247D85A42061097B00EE6145 /* 55.png in Resources */,
 				247D85722061097B00EE6145 /* 1.png in Resources */,
 				247D85AF2061097B00EE6145 /* 65.png in Resources */,
+				130C0EA220EF74610032D6CF /* FileScript.py in Resources */,
 				247D85762061097B00EE6145 /* 13.png in Resources */,
 				247D85BC2061097B00EE6145 /* 77.png in Resources */,
 				247D85C22061097B00EE6145 /* 82.png in Resources */,
@@ -1250,6 +1255,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		130C0EA020EF73B50032D6CF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/FileScript.py",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/python;
+			shellScript = "";
+		};
 		3504CF30C8A45BD6D675AC3A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
