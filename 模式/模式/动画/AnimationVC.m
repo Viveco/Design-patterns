@@ -119,7 +119,7 @@
     animation.type = @"rippleEffect";
     animation.subtype = kCATransitionFromTop;
     [self.animationBT.layer addAnimation:animation forKey:@"ripple"];
-    [self.animationBT setBackgroundImage:[UIImage imageNamed:@"11.png"] forState:UIControlStateNormal];;
+    [self.animationBT setBackgroundImage:[UIImage imageNamed:@"11.png"] forState:UIControlStateNormal];
     
 }
 

@@ -1,0 +1,29 @@
+{
+  "name": "Design-patterns",
+  "version": "1.0.0",
+  "description": "Design patterns 主要用于积累设计模式。进行比较多的内容小结",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "cz-conventional-changelog": "^2.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viveco/Design-patterns.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Viveco/Design-patterns/issues"
+  },
+  "homepage": "https://github.com/Viveco/Design-patterns#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
