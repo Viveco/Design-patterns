@@ -44,7 +44,8 @@
     NSLog(@"commit测试");
     NSLog(@"设置gitCommit");
     NSLog(@"再次测试gitCommit");
-    NSLog(@"测试change log")
+    NSLog(@"测试change log");
+    NSLog(@"测试ssh");
     
     _dataSource = @[@"设计模式",@"SKU 刷选",@"View的动画",@"一些东西，什么通知，数据持久化等",@"生命周期等",@"NSTimer-GCD等",@"RunLoop-RunTime",@"网络请求等",@"加密问题",@"地图",@"推送",@"传感器等",@"数据存储",@"runloop 使用场景"];
     
